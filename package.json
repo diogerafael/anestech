@@ -1,0 +1,29 @@
+{
+  "name": "Anestech",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc ",
+    "start": "yarn build && node dist/src/index.js",
+    "start:dev": "ts-node-dev 'src/index.ts'",
+    "test:functional": "jest --projects ./test --runInBand",
+    "test:unit": "jest",
+    "lint": "eslint ./src ./test --ext .ts",
+    "lint:fix": "eslint ./src ./test --ext .ts --fix",
+    "style:check": "prettier --check 'src/**/*.ts' 'test/**/*.ts' ",
+    "style:fix": "prettier --write 'src/**/*.ts' 'test/**/*.ts' "
+  },
+  "author": "akuma - diogerafael@gmail.com",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/config": "^0.0.36",
+    "@types/node": "^14.14.7",
+    "@types/validator": "^13.1.0",
+    "eslint": "^7.13.0",
+    "prettier": "^2.1.2",
+    "ts-node-dev": "^1.0.0"
+  },
+  "dependencies": {
+    "config": "^3.3.2"
+  }
+}

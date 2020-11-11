@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: mysql-server
+    environment:
+      MYSQL_ROOT_PASSWORD: "akuma@Aa"
+      MYSQL_DATABASE: "sofia"
+    ports:
+      - "3309:3309"
+    restart: unless-stopped
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6366:6366"
