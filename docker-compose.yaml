@@ -7,6 +7,9 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: "akuma@Aa"
       MYSQL_DATABASE: "sofia"
+      MYSQL_USER: "akuma"
+      MYSQL_PASSWORD: "akuma@aA"
+      MYSQL_TCP_PORT: 3309
     ports:
       - "3309:3309"
     restart: unless-stopped
