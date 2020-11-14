@@ -1,5 +1,5 @@
 import { ValidationError } from "sequelize";
-
+import ApiError, { APIError } from '@src/util/erros/api-erros';
 export abstract class BaseController {
     protected sendCreateUpdateErrorResponse(
         res: any,
@@ -25,5 +25,9 @@ export abstract class BaseController {
             return { code: 409, error: error.message };
         }
         return { code: 422, error: error.message };
+    }
+
+    protected sendErrorResponse(res: any, apiError: APIError): Response {
+        return res.status(apiError.code).send(ApiError.format(apiError));
     }
 }
