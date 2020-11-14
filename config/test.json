@@ -1,0 +1,21 @@
+{
+    "App": {
+        "port": 3000,
+        "database": {
+            "username": "root",
+            "password": "akuma@Aa",
+            "database": "sofia",
+            "host": "localhost",
+            "dialect": "mysql",
+            "port": "3309"
+        },
+        "auth": {
+            "key": "MyKeyToken",
+            "tokenExpiresIn": "20000000"
+        },
+        "logger": {
+            "enabled": true,
+            "level": "info"
+        }
+    }
+}

@@ -10,14 +10,8 @@
             "port": "3309"
         },
         "auth": {
-            "key": "some-key",
+            "key": "MyKeyToken",
             "tokenExpiresIn": "20000000"
-        },
-        "resources": {
-            "StormGlass": {
-                "apiUrl": "https://api.stormglass.io/v2",
-                "apiToken": "do-not-hard-code"
-            }
         },
         "logger": {
             "enabled": true,
