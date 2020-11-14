@@ -1,9 +1,9 @@
 import AuthService from '../services/auth';
-import { Column, Table, Model, CreatedAt, UpdatedAt, AutoIncrement, PrimaryKey, IsEmail, Unique, AllowNull, NotEmpty, BeforeCreate, HasMany } from "sequelize-typescript";
+import { Column, Table, Model, CreatedAt, UpdatedAt, AutoIncrement, PrimaryKey, IsEmail, Unique, AllowNull, NotEmpty, BeforeCreate, HasMany, IsUUID } from "sequelize-typescript";
 import Task from './task.model';
 
 export interface UserI {
-    // id?: number | null
+    id: number
     name: string
     email: string
     password: string
@@ -13,10 +13,10 @@ export interface UserI {
 @Table({ tableName: "user" })
 export default class User extends Model implements UserI {
 
-    // @AutoIncrement
-    // @PrimaryKey
-    // @Column
-    // public id!: number;
+    @PrimaryKey
+    @AutoIncrement
+    @Column
+    id!: number;
 
     @AllowNull(false)
     @NotEmpty
