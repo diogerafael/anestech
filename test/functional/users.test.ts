@@ -8,12 +8,21 @@ describe('Users functional tests', () => {
 
         await Task.destroy({
             where: {},
-            truncate: true
-        })
+        });
 
         await User.destroy({
             where: {},
-            truncate: true
+        });
+    });
+
+
+    afterEach(async () => {
+        await Task.destroy({
+            where: {},
+        });
+
+        await User.destroy({
+            where: {},
         });
     });
 
@@ -31,7 +40,6 @@ describe('Users functional tests', () => {
 
             expect(response.status).toBe(201);
             expect(AuthService.comparePasswords(newUser.password, response.body.password)).resolves.toBeTruthy();
-            //expect(response.body).toEqual(newUser);
         });
 
 
