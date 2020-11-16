@@ -47,7 +47,7 @@ export class SetupServer extends Server {
 
     private async databaseSetup(): Promise<void> {
         await sequelize.authenticate();
-        await sequelize.sync({ force: true });
+        //await sequelize.sync({ force: true });
     }
 
 

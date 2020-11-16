@@ -1,5 +1,5 @@
 import AuthService from '../services/auth';
-import { Column, Table, Model, CreatedAt, UpdatedAt, AutoIncrement, PrimaryKey, IsEmail, Unique, AllowNull, NotEmpty, BeforeCreate, HasMany, IsUUID } from "sequelize-typescript";
+import { Column, Table, Model, CreatedAt, UpdatedAt, AutoIncrement, PrimaryKey, IsEmail, Unique, AllowNull, NotEmpty, BeforeCreate, HasMany, IsUUID, Scopes } from "sequelize-typescript";
 import Task from './task.model';
 
 export interface UserI {

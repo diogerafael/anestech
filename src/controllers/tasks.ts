@@ -1,3 +1,4 @@
+import { StatusCodes } from 'http-status-codes';
 import { Controller, Middleware, Post } from "@overnightjs/core";
 import { Response, Request } from 'express';
 import Task from '../models/task.model';
@@ -12,10 +13,10 @@ export class TasksController extends BaseController {
     @Middleware(authMiddleware)
     public async create(req: Request, res: Response): Promise<void> {
         try {
-            console.log(`Body Task ${req.body}`);
             const newTask = await Task.create(req.body);
-            res.status(201).send(newTask);
+            res.status(StatusCodes.CREATED).send(newTask);
         } catch (error) {
+            console.log(error);
             this.sendCreateUpdateErrorResponse(res, error);
         }
     }

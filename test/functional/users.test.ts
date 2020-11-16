@@ -1,8 +1,13 @@
 import Task from "@src/models/task.model";
 import User from "@src/models/user.model"
 import AuthService from "@src/services/auth";
+import { create } from "domain";
+import { response } from "express";
+import { StatusCodes } from "http-status-codes";
 
 describe('Users functional tests', () => {
+
+    let token = '';
 
     beforeEach(async () => {
 
@@ -13,6 +18,17 @@ describe('Users functional tests', () => {
         await User.destroy({
             where: {},
         });
+
+
+        const userForToken = await User.create({
+            name: 'Temp User da Silva',
+            email: 'token@mail.com',
+            password: '1234'
+        });
+
+
+        token = AuthService.generateToken(userForToken.toJSON());
+
     });
 
 
@@ -35,7 +51,8 @@ describe('Users functional tests', () => {
                 password: '1234'
             };
 
-            const response = await global.testRequest.post('/users').send(newUser);
+            const response = await global.testRequest.post('/users').send(newUser)
+                .set({ 'x-access-token': token });;
 
 
             expect(response.status).toBe(201);
@@ -84,6 +101,59 @@ describe('Users functional tests', () => {
 
 
     });
+
+
+    describe('when searching for user', () => {
+
+
+        it('should get user with a valid id ', async () => {
+
+            const createdUser = await User.create({
+                name: 'Temp User da Silva',
+                email: 'temp@mail.com',
+                password: '1234'
+            });
+
+
+            const response = await global.testRequest.get(`/users/${createdUser.id}`)
+                .set({ 'x-access-token': token });
+
+
+            expect(response.status).toBe(200);
+        });
+
+
+        it('should  get user with invalid id', async () => {
+            const createdUser = await User.create({
+                name: 'Temp User da Silva',
+                email: 'temp2@mail.com',
+                password: '1234'
+            });
+
+
+            const token = AuthService.generateToken(createdUser.toJSON());
+            const response = await global.testRequest.get(`/users/0`)
+                .set({ 'x-access-token': token });
+
+            expect(response.status).toBe(StatusCodes.NOT_FOUND);
+        });
+
+
+
+        it('should  get users ', async () => {
+
+            const response = await global.testRequest.get(`/users/`)
+                .set({ 'x-access-token': token });
+
+
+            console.log(response.body);
+
+            expect(response.status).toBe(StatusCodes.OK);
+        });
+
+
+    });
+
 
 
 

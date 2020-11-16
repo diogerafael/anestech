@@ -41,12 +41,10 @@ export default class Task extends Model implements TaskI {
     user?: User;
 
     @AllowNull(false)
-    @Index
     @Column
     startDate: Date;
 
     @AllowNull(false)
-    @Index
     @Column
     endDate: Date;
 
